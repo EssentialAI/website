@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLEH0W42YV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QLEH0W42YV');
+  </script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+  <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
+  <!-- <link rel="stylesheet" href="light.css"> -->
+  <link rel="icon" href="brain1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- <script>
+    function myFunction() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+    }
+  </script> -->
+  <title>EssentialAI</title>
+</head>
+
+<body>
+  <div class="topnav">
+   <a class="top" href="index.html">Blog</a>
+    <a class="top" href="about.html">About</a>
+    <!-- <a class="top" href="publications.html">Publications</a> -->
+    <!-- <a id="small" href="research.html">Misc. research articles</a> -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+  <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
+</button>
+  </div>
+  <!-- Start your blog here -->
+  <!-- ################################################################################ -->
+
+  <h1 class="bloghead">Concepts' Warmup</h1><br>
+  <p class = 'content'>The language of this course is going to be probability. Everything we discuss in this course will be based on undergraduate level probability.</p>
+<p class = 'green'>a. We have two probability distributions, <span class = 'latex'>\(P(A,B)\)</span> and <span class = 'latex'>\(P(A|B)\)</span>. What do we call these distributions?</p>
+
+<p class = 'content'>In the above question, <span class = 'latex'>\(P(A,B)\)</span> (also denoted as <span class = 'latex'>\(P(A \cap B)\)</span>) is called <span class = 'highlight'>Joint Probability.</span> Joint probability is a statistical measure that calculates the likelihood of two events occurring together and at the same point in time.</p>
+<div class='scenter'><img style="border-radius: 5px;" src="p(a_and_b).png" alt=""></div>
+<p class="content">Joint probability is a measure of two events happening at the same time, and can only be applied to situations where more than one observation can occur at the same time. For example, from a deck of 52 cards, the joint probability of picking up a card that is both red and 6 is P(6 ∩ red) = 2/52 = 1/26, since a deck of cards has two red sixes—the six of hearts and the six of diamonds. Because the events "6" and "red" are independent in this example, you can also use the following formula to calculate the joint probability:</p>
+<p class = 'center'><span class = 'latex'>\(P(6 \cap red) = P(6) \times P(red)  = 4/52 \times 26/52 = 1/26\)</span></p>
+<p class = 'highlight'>Joint probability should not be confused with conditional probability (denoted by <span class = 'latex'>\(P(A|B)\)</span>), which is the probability that one event will happen given that another action or event happens</span>.</p>
+<p class = 'content'>This is to say that the chance of one event happening is conditional on another event happening. For example, from a deck of cards, the probability that you get a six, given that you drew a red card is P(6│red) = 2/26 = 1/13, since there are two sixes out of 26 red cards.</p>
+<p class = 'highlight'>Combining both, we have:</p>
+<p class = 'center'><span class = 'latex'>\(P(X, Y) = P(X|Y) \times P(Y)\)</span></p>
+<p class = 'content'>The probability that X and Y occurs is the probability of X occurring, given that Y occurs multiplied by the probability that Y occurs. Given this formula, the probability of drawing a 6 and a red at the same time will be as follows:</p>
+<p class = 'center'><span class = 'latex'>\(P(6 \cap red) = P(6|red) \times P(red) = 1/32 \times 26/52 = 1/26\)</span></p>
+
+<p class = 'green'>b. Given the probability distribution, <span class = 'latex'>\(P(X,Y)\)</span>, how to find <span class = 'latex'>\(P(X)\)</span>? What is process called? What is <span class = 'latex'>\(P(X)\)</span> called in this context?</p>
+<p class = 'content'>This process is called <span class = 'highlight'>Marginalization</span> and <span class = 'latex'>\(P(X)\)</span> is called <span class = 'highlight'>Marginal Distribution.</span></p>
+<p class="content">Marginalization in probability refers to “summing out” the probability of a random variable <span class = 'latex'>\(X\)</span> given the joint probability distribution of <span class = 'latex'>\(X\)</span> with other variable(s). It is a direct application of the law of total probability.</p>
+<p class = 'content'>For instance, let’s say that you want to compute  <span class = 'latex'>\(P(X=x)\)</span>, but you are not given a direct probability distribution over  <span class = 'latex'>\(X\)</span>  from which you can read this value. You are instead given a joint probability distribution over  <span class = 'latex'>\(X\)</span>  and some other random variable(s)  <span class = 'latex'>\(Y\)</span> . Well, in that case you can just do:</p>
+<p class = 'center'><span class = 'latex'>\(\begin{align}P(X=x)= \sum_{Y}P(X=x,Y)\end{align}\)</span></p>
+<p class = 'content'>That is, to find <span class = 'latex'>\(P(X=x)\)</span>, we sum all the probability values where <span class = 'latex'>\(X=x\)</span> occurs with all possible values of <span class = 'latex'>\(Y\)</span>.</p>
+<p class = 'content'>We can find how often <span class = 'latex'>\(X=x\)</span> occurs if we consider how often <span class = 'latex'>\(X=x\)</span> occurs with each individual value of <span class = 'latex'>\(Y\)</span>, and sum up all such values to get the total value of the “often-ness” of <span class = 'latex'>\(X\)</span>.</p>
+<p class = 'scenter'><span class = 'latex'>\(\begin{align}P(X) = \sum_{Y}P(X,Y) \end{align}\)</span> (if Y is discrete)</p>
+<p class = 'scenter'><span class = 'latex'>\(P(X) = \int P(X,Y)dx\)</span> (if Y is continuous)</p>
+<p class = 'green'>c. What is <span class = 'latex'>\(E(X)\)</span> in probability, how to find <span class = 'latex'>\(E(X)\)</span>?</p>
+<p class = 'content'><span class = 'latex'>\(E(X)\)</span> is called Expected value. It is given by:</p>
+<p class = 'scenter'><span class = 'latex'>\(\begin{align}E(X) = \sum_{x=i}^{n}x_iP(X=x_i)\end{align}\)</span> (if X is discrete)</p>
+<p class = 'scenter'><span class = 'latex'>\(\begin{align}E(X) = \int x_iP(X=x_i)\end{align}\)</span> (if X is continuous)</p>
+<p class = 'green'>d. What is <span class = 'latex'>\(E[X|Y]\)</span> and <span class = 'latex'>\(E[X|Y=y]\)</span> in probability? What is the difference between them?</p>
+<p class = 'content'>Suppose that X and Y are random variables.</p>
+<p class = 'content'>Let <span class = 'latex'>\(y_0\)</span> be a fixed real number, say <span class = 'latex'>\(y_0=1\)</span>. Then, <span class = 'latex'>\(E[X∣Y=y_0]=E[X∣Y=1]\)</span> is a number: it is the conditional expected value of X given that Y has value 1. Now, note for some other fixed real number <span class = 'latex'>\(y_1\)</span>, say <span class = 'latex'>\(y_1=1.5\)</span>, <span class = 'latex'>\(E[X∣Y=y_1]=E[X∣Y=1.5]\)</span> would be the conditional expected value of X given Y=1.5 (a real number). There is no reason to suppose that <span class = 'latex'>\(E[X∣Y=1.5]\)</span> and <span class = 'latex'>\(E[X∣Y=1]\)</span> have the same value. Thus, we can also regard <span class = 'latex'>\(E[X∣Y=y]\)</span> as being a real-valued function <span class = 'latex'>\(g(y)\)</span> that maps real numbers y to real numbers <span class = 'latex'>\(E[X∣Y=y]\)</span>. <span class = 'latex'>\(E[X∣Y=y]\)</span> is a real-valued function of y.</p>
+<p class = 'content'>On the other hand, <span class = 'latex'>\(E[X∣Y]\)</span> is a random variable Z which happens to be a function of the random variable Y. Now, whenever we write <span class = 'latex'>\(Z=h(Y)\)</span>, what we mean is that whenever the random variable Y happens to have value y, the random variable Z has value h(y). Whenever Y takes on value y, the random variable <span class = 'latex'>\(Z=E[X∣Y]\)</span> takes on value <span class = 'latex'>\(E[X∣Y=y]=g(y)\)</span>. Thus, <span class = 'latex'>\(E[X∣Y]\)</span> is just another name for the random variable <span class = 'latex'>\(Z=g(Y)\)</span>. Note that <span class = 'latex'>\(E[X∣Y]\)</span> is a function of Y.</p>
+<p class = 'content'>As a a simple illustrative example, suppose that <span class="latex">\(X\)</span> and <span class="latex">\(Y\)</span> are discrete random variables with joint distribution:</p>
+<p class = 'scenter'><span class = 'latex'>\(P(X=0,Y=0)=0.1, P(X=0,Y=1)=0.2,\)</span></p>
+<p class = 'scenter'><span class = 'latex'>\(P(X=1,Y=0)=0.3, P(X=1,Y=1)=0.4.\)</span></p>
+<p class = 'content'>Note that X and Y are (dependent) Bernoulli random variables with parameters 0.7 and 0.6 respectively, and so <span class="latex">\(E[X]=0.7\)</span> and <span class="latex">\(E[Y]=0.6\)</span>. Now, note that conditioned on Y=0, X is a Bernoulli random variable with parameter 0.75 while conditioned on Y=1, X is a Bernoulli random variable with parameter 23. If you cannot see why this is so immediately, just work out the details: for example</p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}P(X=1|Y=0)=\frac{P(X=1,Y=0)}{P(Y=0)}=\frac{0.3}{0.4}=\frac{3}{4},\end{align}\)</span></p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}P(X=0|Y=0)=\frac{P(X=0,Y=0)}{P(Y=0)}=\frac{0.1}{0.4}=\frac{1}{4} \end{align}\)</span></p>
+<p class = 'content'>and similarly for <span class = 'latex'>\(P(X=1|Y=1)\)</span> and <span class = 'latex'>\(P(X=0|Y=1)\)</span>. Hence, we have that,</p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}E[X|Y=0]=\frac{3}{4}, E[X|Y=1]=\frac{2}{3}\end{align}\)</span></p>
+<p class = 'content'>Thus, <span class = 'latex'>\(E[X|Y=y]=g(y)\)</span> where <span class = 'latex'>\(g(y)\)</span> is a real-valued function, that has the property,</p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}g(0)=\frac{3}{4}, g(1)=\frac{2}{3}\end{align}\)</span></p>
+<p class = 'content'>On the other hand, <span class = 'latex'>\(E[X|Y]=g(Y)\)</span> is a random variable that takes on values <span class = 'latex'>\(3/4\)</span> and <span class = 'latex'>\(2/3\)</span> with probabilities <span class = 'latex'>\(0.4=P(Y=0), 0.6=P(Y=1)\)</span> respectively. Note that <span class = 'latex'>\(E[X|Y]\)</span> is a discrete random variable but is not a Bernoulli random variable.</p>
+<p class = 'content'>Finally, </p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}E[Z]=E[E[X|Y]]=E[g(Y)]=0.4 \times \frac{3}{4}+0.6 \times \frac{2}{3}=0.7=E[X].\end{align}\)</span></p>
+
+<p class = 'green'>e. If we draw samples from <span class = 'latex'>\(P(X)\)</span>, how can we estimate <span class = 'latex'>\(E(X)\)</span>?</p>
+<p class='content'>We take the arithmetic mean of the samples. Since <span class ='latex'>\(E(X)\)</span> is the mean, we call the estimate using samples, as the sample mean. This is an example of <span class = 'highlight'>Monte Carlo.</span></p>
+<p class='scenter'><span class = 'latex'>\(\begin{align}E(X) \approx \frac{1}{N} \sum_{i=1}^{N}x_i\end{align}\)</span>, where <span class = 'latex'>\(x_i \sim p(x)\)</span></p>
+<p class = 'green'>f. Given <span class = 'latex'>\(P(x|y), p(y)\)</span>, how can we find <span class = 'latex'>\(P(y|x)\)</span>?</p>
+<p class = 'scenter'>Bayes rule:</p>
+<p class ='scenter'><span class = 'latex'>\(\begin{align}P(y|x) = \frac{P(x|y)P(y)}{P(x)}\end{align}\)</span></p>
+<p class = 'green'>g. Review Machine Learning and understand loss functions used in Linear Regression. Understand the difference between closed form solution and the matrix notation. Create a sample dataset and solved for the line of best fit using calculus and gradient descent.</p>
+<p class = 'highlight'><a href="ml.html" style="text-decoration:none;">Clearly explain in articles here with code from scratch.</a></p>
+
+
+ 
+
+
+
+<hr class="line">
+  <button id="copy_btn">
+  </button>
+  <p class="scenter" style="font-size: 16px"><a href="https://www.linkedin.com/in/nareshkumar1040/"
+      style="text-decoration:none;color:#52b788">NareshKumar Devulapally</a></p>
+        <script type="text/javascript">
+    // check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode'); 
+
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+
+const enableDarkMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add('darkmode');
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove('darkmode');
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (darkMode === 'enabled') {
+  enableDarkMode();
+}
+
+// When someone clicks the button
+darkModeToggle.addEventListener('click', () => {
+  // get their darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  
+  // if it not current enabled, enable it
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  // if it has been enabled, turn it off  
+  } else {  
+    disableDarkMode(); 
+  }
+});
+
+
+    
+  </script>
+</body>
+
+</html>

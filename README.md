@@ -1,1 +1,2 @@
-# website
+# essentialai.github.io
+Machine Learning website

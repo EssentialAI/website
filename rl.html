@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLEH0W42YV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QLEH0W42YV');
+  </script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+  <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
+  <!-- <link rel="stylesheet" href="light.css"> -->
+  <link rel="icon" href="brain1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- <script>
+    function myFunction() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+    }
+  </script> -->
+  <title>EssentialAI</title>
+</head>
+
+<body>
+  <div class="topnav">
+    <a class="top" href="index.html">Blog</a>
+    <a class="top" href="about.html">About</a>
+    <!-- <a class="top" href="publications.html">Publications</a> -->
+    <!-- <a id="small" href="research.html">Misc. research articles</a> -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+  <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
+</button>
+  </div>
+  <!-- Start your blog here -->
+  <!-- ####################################### ######################################### -->
+  <h1 class="bloghead"><a href="rl_lz.html" class="bloghead1">AI: Reinforcement Learning in Python</a></h1><br>
+  <p class = 'content'>Lecture notes for the course <a href="https://www.udemy.com/course/artificial-intelligence-reinforcement-learning-in-python/" target="_blank" style="text-decoration: none;color: #2ec4b6;"">Artificial Intelligence: Reinforcement Learning in Python.</a> This is a great course to understand the basics of RL from ground up. This course will be mathematically intensive and requires a comprehensive understanding of Linear and Logistic Regression as pre-requisites. Machine Learning concepts are explained clearly <a href="ml.html" style="text-decoration: none;color: #2ec4b6;"">here.</a></p>
+  <p class='content'><a href="rl_lz.html" style="text-decoration: none;color: #2ec4b6;"">read
+      more -></a></p>
+  <hr class="line">
+  <!-- <h1 class="bloghead"><a href="lecture1_cs229.html" class="bloghead1">Lecture 1: Intro to Machine Learning</a></h1><br>
+  <p class = 'content'>Basic Introduction to Machine Learning. Contains solved pracitice assignment 0. General Introduction about Supervised and Unsupervised Machine Learning.</p>
+  <p class='content'><a href="lecture1_cs229.html" style="text-decoration: none;color: #2ec4b6;"">read
+      more -></a></p>
+  <hr class="line"> -->
+  <button id="copy_btn">
+  </button>
+  <p class="scenter" style="font-size: 16px"><a href="https://www.linkedin.com/in/nareshkumar1040/"
+      style="text-decoration:none;color:#52b788">NareshKumar Devulapally</a></p>
+        <script type="text/javascript">
+    // check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode'); 
+
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+
+const enableDarkMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add('darkmode');
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove('darkmode');
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (darkMode === 'enabled') {
+  enableDarkMode();
+}
+
+// When someone clicks the button
+darkModeToggle.addEventListener('click', () => {
+  // get their darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  
+  // if it not current enabled, enable it
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  // if it has been enabled, turn it off  
+  } else {  
+    disableDarkMode(); 
+  }
+});
+
+
+    
+  </script>
+</body>
+
+</html>

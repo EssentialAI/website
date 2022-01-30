@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLEH0W42YV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QLEH0W42YV');
+  </script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+  <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
+  <!-- <link rel="stylesheet" href="light.css"> -->
+  <link rel="icon" href="brain1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- <script>
+    function myFunction() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+    }
+  </script> -->
+  <title>EssentialAI</title>
+</head>
+
+<body>
+  <div class="topnav">
+    <a class="top" href="index.html">Blog</a>
+    <a class="top" href="about.html">About</a>
+    <!-- <a class="top" href="publications.html">Publications</a> -->
+    <!-- <a id="small" href="research.html">Misc. research articles</a> -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+  <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
+</button>
+  </div>
+  <!-- Start your blog here -->
+  <!-- ################################################################################ -->
+  <h1 class="bloghead">Linear Algebra Review</h1><br>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Basic Notation</span>
+  </p>
+  <p class = 'content'>Linear algebra provides a way of compactly representing and operating on sets of linear equations. For example:</p>
+  <p class = 'scenter'><span class = 'latex'>\(4x_{1}-5x_{2}=-13\)</span></p>
+  <p class = 'scenter'><span class = 'latex'>\(-2x_{1}+3x_{2}=9\)</span></p>
+  <p class ='scenter'>The matrix notation of above equations is:</p>
+  <p class = 'scenter'><span class = 'latex'>\(Ax=b\)</span></p>
+  <p class = 'scenter'><span class = 'latex'>with \(A=\begin{bmatrix}
+      4 & -5 \\
+      -2 & 3
+      \end{bmatrix}, \enspace b = \begin{bmatrix}
+      -13 \\
+      9
+      \end{bmatrix}\)</span></p>
+  <p class = 'content'>By \(A \in \mathbb{R}^{m \times n}\), we denote a matrix with \(m\) rows and \(n\) columns. By \(x \in \mathbb{R}^{n}\), we denote vector with \(n\) entries.</p>
+  <p class="scenter"><span class='latex'>\(\begin{align}A = \begin{bmatrix}
+      a_{11} & a_{12} & a_{13} & ... & a_{1n} \\
+      a_{21} & a_{22} & a_{23} & ... & a_{2n} \\
+      a_{31} & a_{32} & a_{33} & ... & a_{3n} \\
+      ... & ... & ... & ... & ... \\
+      a_{m1} & a_{m2} & a_{m3} & ... & a_{mn}
+      \end{bmatrix}, \enspace \enspace x = \begin{bmatrix}
+      x_{1} \\
+      x_{2} \\
+      x_{3} \\
+      .. \\
+      x_{n}
+      \end{bmatrix}
+      \end{align}\)</span></p>
+
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Matrix Multiplication</span>
+    
+  </p>
+  <p class = 'content'>The product of two matrices \(A \in \mathbb{R}^{m \times n}\) and \(B \in \mathbb{R}^{n \times p}\) is the matrix</p>
+  <p class = 'scenter'>\(C = AB \in \mathbb{R}^{m \times p}\) <span class='highlight'> where \(\begin{align}C_{ij} = \sum_{k=1}^{n}A_{ik}B_{kj}\end{align}\)</span></p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Vector-Vector Products</span>
+    
+  </p>
+  <p class = 'content'>Inner product is given by </p>
+  <p class ='scenter'>\(\begin{align} x^Ty \in \mathbb{R} = \begin{matrix} [x_{1} & x_{2} & ... & x_{n}]\end{matrix} \begin{bmatrix}
+      y_{1} \\
+      y_{2} \\
+      .. \\
+      y_{n}
+      \end{bmatrix} = \sum_{i=1}^{n}x_{i}y_{i}\end{align}\)</p>
+  <p class = 'content'>Outer product is given by </p>
+  <p class ='scenter'>\(xy^T \in \mathbb{R}^{m \times n} = \begin{bmatrix}
+      x_{1} \\
+      x_{2} \\
+      .. \\
+      x_{n}
+      \end{bmatrix}\begin{matrix} [y_{1} & y_{2} & ... & y_{n}]\end{matrix} = \begin{bmatrix}
+      x_{1}y_{1} & x_{1}y_{2} & ... & x_{1}y_{n} \\
+      x_{2}y_{1} & x_{2}y_{2} & ... & x_{2}y_{n} \\
+      ... & ... & ... & ... \\
+      x_{m}y_{1} & x_{m}y_{2} & ... & x_{m}y_{n} \\
+      \end{bmatrix}\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Symmetric Matrices</span>
+    
+  </p>
+  <p class='content'>A matrix \(A \in \mathbb{R}^{n \times n}\) is <span class = 'highlight'>symmetric</span> is \(A = A^T\). It is <span class = 'highlight'>anti-symmetric</span> if \(A = -A^T\)</p>
+  <p class = 'content'>Any matrix \(A \in \mathbb{R}^{n \times n}\) can be represented as a sum of a symmetric matrix and an anti-symmetric matrix.</p>
+  <p class='scenter'>\(A = \frac{1}{2}(A+A^T)+\frac{1}{2}(A-A^T)\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Norms</span>
+    
+  </p>
+  <p class='content'>A norm, \(||x||\), of a vector is informally defined as the measure of 'length' of the vector. For example, we have the commonly-used Eucledian or \(l_{2}\) norm,</p>
+  <p class = 'scenter'>\(\begin{align}||x||_{2} = \sqrt{\sum_{i=1}^{n}x_{i}^2}\end{align}\)</p>
+  <p class = 'content'> Note that \(||x||_{2}^2 = x^Tx\)</p>
+  <p class = 'content'>More formally, norm is a function \(f : \mathbb{R}^n \rightarrow \mathbb{R}\) that satisfies 4 properties:</p>
+  <p class="content">
+    For all \(x \in \mathbb{R}^n, f(x) \geq 0 \) (non-negativity)
+    </p>
+  <p class="content">\(f(x) = 0\) if and only if \(x=0\) (definiteness)
+    </p>
+    <p class="content">For all \(x \in \mathbb{R}^n, t \in \mathbb{R}, f(tx) = |t|f(x)\) (homogeneity)
+    </p>
+  <p class="content">For all \(x,y \in \mathbb{R}^n, f(x+y) \leq f(x) + f(y)\) (triangle inequality)
+  </p>
+  <p class = 'content'>Other examples of norms are the \(l_{1}\) norm,</p>
+  <p class = 'scenter'>\(\begin{align}||x||_{1} = \sum_{i=1}^{n}|x_{i}| \end{align}\)</p>
+  <p class = 'content'>Norms are also be defined for matrices, such as the Frobenius norm</p>
+  <p class = 'scenter'>\(\begin{align}||A||_{F} = \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n}A_{ij}^2} = \sqrt{trace(A^TA)}\end{align}\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Orthogonal Matrices</span>
+    
+  </p>
+  <p class = 'content'>Two vectors \(x, y \in \mathbb{R}^n\) are <span class = 'highlight'>orthogonal</span> if \(x^Ty=0\). A square matrix \(U \in \mathbb{R}^{m \times n}\) is <span class = 'highlight'>orthogonal</span> if all the columns are orthogonal to each other and are normalized. <span class = 'highlight'>In other words, the inverse of an orthogonal matrix is its Transpose.</span> This gives us:</p>
+  <p class ='scenter'>\(U^TU = I = UU^T\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Span, Range and Nullspace of a Matrix</span>
+    
+  </p>
+  <p class= 'content'>The span of a set of vectors <span class ='latex'>\(\begin{Bmatrix} x_{1},x_{2},...x_{n} \end{Bmatrix}\)</span> is the set of all vectors that can be expressed as a linear combination of \(\begin{Bmatrix} x_{1},...,x_{n} \end{Bmatrix}\). That is:</p>
+  <p class = 'scenter'>span\(\begin{align}(\begin{Bmatrix}x_{1},...x_{n}\end{Bmatrix}) =\begin{Bmatrix}
+v:v = \sum_{i=1}^{n}\alpha_{i}x_{i}, \enspace \alpha_{i} \in \mathbb{R}
+\end{Bmatrix}\end{align}\)</p>
+  <p class = 'content'>The projection of a vector \(y \in \mathbb{R}^m\) onto a span of \(\begin{Bmatrix}x_{1}, x_{2},..,x_{n}\end{Bmatrix}\) is the vector \(v \in span(\begin{Bmatrix} x_{1},...,x_{n}\end{Bmatrix})\), such that \(v\) is as close as possible to \(y\), as measured by the Eucledian norm \(||v-y||_{2}\). We denote the projection as \(Proj(y;\begin{Bmatrix}x_{1},...,x_{n}\end{Bmatrix})\) and can define it formally as,</p>
+  <p class = 'scenter'>\(Proj(y;\begin{Bmatrix}x_{1},...,x_{n}\end{Bmatrix}) = argmin_{v \in span(\begin{Bmatrix}x_{1},...,x_{n}\end{Bmatrix})}||y-v||_{2}\)</p><br>
+  <p class = 'content'>The range of a matrix \(A \in \mathbb{R}^{m \times n}\), denoted \(R(A)\), is the span of the columns of \(A\). In other words, </p>
+  <p class = 'scenter'>\(R(A) = \begin{Bmatrix}v \in \mathbb{R}^m : v = Ax, x \in \mathbb{R}^n \end{Bmatrix}\)</p><br>
+  <p class = 'content'>The nullspace of a matrix \(A \in \mathbb{R}^{m \times n}\), denoted by \(N(A)\) is the set of all vectors that equal to 0 when multipled by \(A\), i.e.,</p>
+  <p class = 'scenter'>\(N(A) = \begin{Bmatrix} x \in \mathbb{R}^n : Ax = 0\end{Bmatrix}\)</p>
+  <p class='highlight'>To understand nullspace, range more clearly, refer references from 'Khan's Academy' linked below.</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Quadratic Forms and Positive Semidefinite Matrices</span>
+    
+  </p>
+  <p class = 'content'>Given a square matrix \(A \in \mathbb{R}^{n \times n}\) and a vector \(x \in \mathbb{R}^{n}\), the scalar value \(x^TAx\) is called a quadratic form.</p>
+  <p class = 'scenter'>\(\begin{align}x^TAx = \sum_{i=1}^{n}x_{i}(Ax)_{i} = \sum_{i=1}^{n}x_{i}\begin{pmatrix}\sum_{j=1}^{n}A_{ij}x_{j} \end{pmatrix} = \sum_{i=1}^{n}\sum_{j=1}^{n}A_{ij}x_{i}x_{j}\end{align}\)</p>
+  <p class="scenter">Note that, \(x^TAx = (x^TAx)^T = x^TA^Tx = x^T \begin{pmatrix} \frac{1}{2}A + \frac{1}{2}A^T\end{pmatrix}x\)</p>
+  <!-- <p class = 'content'><img src="positive_definite.png"></p> -->
+  <p class = 'content'>A symmetric matrix \(A \in \mathbb{S}^n\) is <span>positive definite</span> (PD) if for all non-zero vectors \(x \in \mathbb{R}^n, x^TAx>0\). This is usually denoted \(A>0\), and often times the set of all positive definite matrices is denoted by \(\mathbb{S}_{++}^n\)</p>
+  <p class = 'content'>A symmetric matrix \(A \in \mathbb{S}^n\) is <span>positive semidefinite</span> (PSD) if for all non-zero vectors \(x \in \mathbb{R}^n, x^TAx \geq 0\). This is usually denoted \(A \geq 0\), and often times the set of all positive semidefinite matrices is denoted by \(\mathbb{S}_{+}^n\)</p>
+  <p class = 'content'>A symmetric matrix \(A \in \mathbb{S}^n\) is <span>negative definite</span> (ND), denoted \(A<0\) if for all non-zero vectors \(x \in \mathbb{R}^n, x^TAx<0\).</p>
+  <p class = 'content'>A symmetric matrix \(A \in \mathbb{S}^n\) is <span>negative semidefinite</span> (NSD), denoted \(A \leq 0\) if for all non-zero vectors \(x \in \mathbb{R}^n, x^TAx \leq 0\).</p>
+  <p class = 'content'>A symmetric matrix \(A \in \mathbb{S}^n\) is <span>indefinite</span>, if it is neither positive semidefinite nor negative semidefinite - i.e., if there exists \(x_{1}, x_{2} \in \mathbb{R}^n \) such that \(x_{1}^TAx_{1}>0\) and \(x_2^TAx_2<0\).</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Eigen Values and Eigen Vectors</span>
+    
+  </p>
+  <p class = 'content'>Given a square matrix \(A \in \mathbb{R}^{n \times n}\), we say that \(\lambda \in \mathbb{C}\) is an eigenvalue of \(A\) and \(x \in \mathbb{C}^n\) is the corresponding eigenvector if:</p>
+  <p class = 'scenter'>\(Ax = \lambda x, \enspace x \neq 0\)</p>
+  <p class = 'scenter'>\((\lambda I -A)x=0, \enspace x \neq 0\)</p>
+  <p class = 'content'>But \((\lambda I -A)x=0\) has a non-zero solution to \(x\) if and only if \((\lambda I -A)\) has a non-empty nullspace, which is only the case if \((\lambda I -A)\) is singular, i.e.,</p>
+  <p class = 'scenter'>\(|(\lambda I -A)|=0\)</p>
+  <p class ='content'>The following are the properties of eigenvalues and eigenvectors:</p>
+  <p class = 'content'>The trace of \(A\) is equal to the sum of eigenvalues,</p>
+  <p class = 'scenter'>\(\begin{align}trace(A) = \sum_{i=1}^{n}\lambda_i\end{align}\)</p>
+  <p class = 'content'>The determinant of \(A\) is equal to the product of its eigenvalues,</p>
+  <p class = 'scenter'>\(\begin{align}|A| = \prod_{i=1}^{n}\lambda_i\end{align}\)</p>
+  <p class = 'content'>The rank of \(A\) is equal to the number of non-zero eigenvalues of \(A\)</p>
+  <p class = 'content'>If \(A\) is non-singular then \(1/\lambda_i\), is an eigenvalue of \(A^{-1}\) with associated eigenvector \(x_{i}\), i.e., \(A^{-1}x_i=\begin{pmatrix} \frac{1}{\lambda_{i}}x_i\end{pmatrix}\).</p>
+  <p class = 'content'>The eigenvalues of a diagonal matrix \(D=diag(d_1, d_2,..,d_n)\) are just the diagonal entries \(d_1, d_2,...,d_n\)</p>
+  <p class = 'content'>We can write all the eigenvector equations simultaneously as</p>
+  <p class ='scenter'>\(AX = X\Lambda\)</p>
+  <p class = 'content'>Where the columns of \(X \in \mathbb{R}^{n \times n}\) are the eigenvectors of \(A\) and \(\Lambda\) is a diagonal matrix whose entries are the eigenvalues of \(A\), i.e.,</p>
+  <p class ='scenter'>\(X \in \mathbb{R}^{n \times n} = \begin{bmatrix}
+  | & | & ... & | \\
+  x_1 & x_2 & ... & x_n \\
+  | & | & ... & | \end{bmatrix}, \enspace \Lambda = diag(\lambda_1, \lambda_2, ..., \lambda_n)\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">The Gradient</span>
+    
+  </p>
+  <p class = 'content'>Suppose that \(f:\mathbb{R}^{m \times n} \rightarrow \mathbb{R}\) is a function that takes as input a matrix \(A\) of size \(m \times n\) and returns a real value. Then the gradient of \(f\) is the matrix of partial derivatives, defined as:</p>
+  <p class = 'scenter'>\(\begin{pmatrix} \nabla_A f(A)\end{pmatrix}_{ij} = \frac{\partial f(A) }{\partial A_{ij}}\)</p>
+  <p class = 'content'>It follows directly from the equivalent properties of partial derivatives that:</p>
+  <p class = 'content'>\(\nabla_x (f(x)+g(x)) = \nabla_x f(x)+\nabla_xg(x)\)</p>
+
+  <!-- <p class = 'content'>(\nabla_x (f(x)+g(x)) = \nabla_x f(x)+\nabla_xg(x)\)</p> -->
+  <p class = 'content'>or \(t \in \mathbb{R}, \nabla_x(tf(x))= t\nabla_xf(x)\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">The Hessian</span>
+    
+  </p>
+  <p class = 'content'>The Hessian matrix with respect to x, written as \(\nabla_x^2f(x)\) or simply as \(H\) is the \(n \times n\) matrix of partial derivates,</p>
+  <p class = 'scenter'>\((\nabla_x^2f(x))_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j}\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Gradients and Hessians of Quadratic and Linear Functions</span>
+    
+  </p>
+  <p class = 'content'>For \(x \in \mathbb{R}^n\), let \(f(x) = b^Tx\) for some known vector \(b \in \mathbb{R}^n\). Then</p>
+  <p class = 'scenter'>\(\begin{align}f(x) = \sum_{i=1}^{n}b_ix_i \end{align}\)</p>
+  <p class = 'scenter'>\(\begin{align}\frac{\partial f(x)}{\partial x_k} = \frac{\partial}{\partial x_k} \sum_{i=1}^{n}b_ix_i = b_k\end{align}\)</p>
+  <p class = 'content'>Now consider the quadratic fuction \(f(x)=x^TAx\) for \(A \in \mathbb{S}^n\). Remember that</p>
+  <p class = 'scenter'>\(\begin{align} f(x) = \sum_{i=1}^{n} \sum_{j=1}^{n}A_{ij}x_ix_j\end{align}\)</p>
+  <p class = 'highlight'>This gives us:</p>
+  <p class = 'content'>\(\nabla_x b^Tx = b\)</p>
+  <p class = 'content'>\(\nabla_x x^TAx = 2Ax\) (if A is symmetric)</p>
+  <p class = 'content'>\(\nabla_x^2 x^TAx = 2A\) (if A is symmetric)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Least Squares</span>
+    
+  </p>
+  <p class = 'content'>Let's apply the equations we obtained in the last section to derive the least square equations. Suppose we are given matrices \(A \in \mathbb{R}^{m \times n}\) (assume full rank for simplicity) and a vector \(b \in \mathbb{R}^m\) such that \(b\) does not fall in the range of A. In this situation we will not be able to find a vector \(x \in \mathbb{R}^n\), such that \(Ax = b\), so instead we want to find a vector \(x\) such that \(Ax\) is as close as possible to \(b\), as measured by the square of the Eucledian norm \(||Ax-b||_2^2\)</p>
+  <p class = 'content'>Using the fact that \(||x||_2^2 = x^Tx\), we have</p>
+  <p class = 'scenter'>\(\begin{align}||Ax-b||_2^2 &= (Ax-b)^T(Ax-b) \\
+  &=x^TA^TAx-2b^TAx+b^Tb\end{align}\)</p>
+  <p class = 'content'>Taking the gradient w.r.t. \(x\) we have, and using the properties we derived in the previous section</p>
+  <p class = 'scenter'>\(\begin{align}\nabla_x(x^TA^TAx-2b^TAx+b^Tb) &= \nabla_xx^TA^TAx-\nabla_x2b^TAx + \nabla_xb^Tb \\
+   &= 2A^TAx - 2A^Tb \end{align}\)</p>
+   <p class = 'scenter'>This gives \(x = (A^TA)^{-1}A^Tb\)</p>
+   <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">Gradients of the Determinant</span>
+    
+  </p>
+  <p class = 'scenter'>\(\nabla_A log|A| = \frac{1}{|A|}\nabla_A|A|=A^{-1}\)</p>
+  <p class='content'>
+    <span class='highlight' style="font-size: 22px; font-family: 'Alegreya Sans SC', sans-serif;">References</span>
+    
+  </p>
+
+  <p class = 'content'><a href="http://cs229.stanford.edu/section/cs229-linalg.pdf" style="text-decoration:none; color: #2ec4b6;">Linear Algebra notes from Standford Machine Learning course</a></p>
+  <p class = 'content'>
+    <a href="https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/null-column-space/v/introduction-to-the-null-space-of-a-matrix" style="text-decoration:none; color: #2ec4b6;"">Khan Academy lecture on Span, Nullspace and Range of a Matrix</a></p>
+
+  <!-- <p class = "content"><i style="color:red">(Website under development. Articles coming in a couple of days)</i></p> -->
+  <!-- <p class="content">The HTML <span>button</span> tag defines a clickable button.</p>
+  <p class="content">The CSS <span class="markdown">background-color</span> property defines the background color of an
+    element.</p> -->
+  <!-- <p class="scenter"> <span class='highlight'>Content in this page is focussed to understand this <a href="http://cs229.stanford.edu/section/cs229-linalg.pdf">pdf</a></span></p> -->
+  <hr class="line">
+<button id="copy_btn">
+  </button>
+  <p class="scenter" style="font-size: 16px"><a href="https://www.linkedin.com/in/nareshkumar1040/"
+      style="text-decoration:none;color:#52b788">NareshKumar Devulapally</a></p>
+        <script type="text/javascript">
+    // check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode'); 
+
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+
+const enableDarkMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add('darkmode');
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove('darkmode');
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (darkMode === 'enabled') {
+  enableDarkMode();
+}
+
+// When someone clicks the button
+darkModeToggle.addEventListener('click', () => {
+  // get their darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  
+  // if it not current enabled, enable it
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  // if it has been enabled, turn it off  
+  } else {  
+    disableDarkMode(); 
+  }
+});
+
+
+    
+  </script>
+
+</body>
+
+</html>

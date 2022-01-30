@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLEH0W42YV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QLEH0W42YV');
+  </script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+
+  <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
+  <!-- <link rel="stylesheet" href="light.css"> -->
+  <link rel="icon" href="brain1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- <script>
+    function myFunction() {
+      var element = document.body;
+      element.classList.toggle("dark-mode");
+    }
+  </script> -->
+  <title>EssentialAI</title>
+</head>
+
+<body>
+  <div class="topnav">
+    <a class="top" href="index.html">Blog</a>
+    <a class="top" href="about.html">About</a>
+    <!-- <a class="top" href="publications.html">Publications</a> -->
+    <!-- <a id="small" href="research.html">Misc. research articles</a> -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+  <svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
+</button>
+  </div>
+  <!-- Start your blog here -->
+  <!-- ################################################################################ -->
+  <h1 class="bloghead">Multiple Regression from Scratch</h1><br>
+  <!-- <p class = "content"><i style="color:red">(Website under development. Articles coming in a couple of days)</i></p> -->
+  <!-- <p class="content">The HTML <span>button</span> tag defines a clickable button.</p>
+  <p class="content">The CSS <span class="markdown">background-color</span> property defines the background color of an
+    element.</p> -->
+  <p class="content"> <span class='highlight'">As the name suggests, using more than one
+      feature (varible) to predict the target variable is called Multiple Linear Regression.</span> Generally, data
+    scientists will be expected to work with datasets where the target variable depends on more than one feature
+    variable. If 1-D regression
+    was fitting the data points using a line, 2-D regression is fitting using a plane. Let's visualize this using
+    iris data (present in sklearn). This article discusses the caveats of using the <a href=" blog1.html"
+      style="text-decoration: none; color: #2ec4b6;">previous approach</a> for Multiple Regression and how Gradient Descent solves them.
+  </p>
+  <!-- <div class='content'> -->
+
+  <iframe width="700" height="550" frameborder="0" scrolling="no"
+    src="https://www.plotly.com/~Naresh6017/24.embed?showlink=false"></iframe>
+  <p class="scenter"><span class='highlight' style="font-size: 16px;">Multiple Regression fit on iris dataset.</span>
+  </p>
+  <p class='content'>To understand Multiple Regression, we might have to take a different yet practical approach.
+    Multiple Regression can take <span class='latex'>\(D\)</span> features so that the dimensionality can span up to
+    <span class='latex'>\(D\)</span> dimensions. This concept can be best understood when equations are represented in
+    matrix form. Let <span class='latex'>\(N\)</span> be the number of samples in the dataset, <span
+      class='latex'>\(D\)</span> be the dimensionality (1 for 1-d Linear Regression, 2 for plane fitting, and so on). We
+    have to develop a matrix <span class='latex'>\(w\)</span> with the coefficients that provide us with a vector <span
+      class='latex'>\(\vec{y}\)</span> that accurately fits given data points. So the equation for Multiple Regression
+    would be :
+  </p>
+  <p class='latex'>\(\begin{align}\hat{y} = w^TX+b
+    \end{align}\)</p>
+  <p class='content'> <span class='highlight'>For <span class='latex'>\(N\)</span> samples and <span
+        class='latex'>\(D\)</span> features, <span class='latex'>\(X\)</span> becomes <span class='latex'>\(N \times
+        D\)</span> matrix. <span class='latex'>\(w\)</span> is a <span class='latex'>\(D \times 1\)</span> vector and y
+      becomes <span class='latex'>\(N \times 1\)</span> vector. Incorporating the bias term into <span
+        class='latex'>\(X\)</span> and writing the above equation in matrix form gives the below equation. You can
+      substitute <span class='latex'>\(D\)</span> as 1 and the results are same as 1-D Linear Regression.</span></p>
+  <p class='latex'>\(\begin{align}\vec{y}_{N\times1} = X^{}_{N\times D}w^{}_{D\times1}
+    \end{align}\)</p>
+  <p class='scenter'>The error function stays the same and is represented as follows:</p>
+  <!-- <div class="row"> -->
+  <!-- <div class="column"> -->
+  <!-- </div> -->
+  <!-- <div class="column"> -->
+  <!-- <iframe width="750" height="500" frameborder="0" scrolling="no"
+      src="https://www.plotly.com/~Naresh6017/21.embed?showlink=false"></iframe> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+
+  <!-- <p class="content"><span class='content' style="color:rgb(6, 187, 6)">Okay, so how do we develop this line of best
+      fit
+      once a set of data points are given?</span> Let's play a
+    game to come up with this line, shall we? Let's suppose there existed no algorithm for Linear Regression
+    beforehand,
+    and we have to come up with a model that everyone will use. How will we, mediocre mathematicians with an
+    intermediate knowledge in calculus, might conjure something like that? Before we proceed, let me clarify some
+    points
+    here. We
+    have data points <span class='latex'>\(x_{i}\)</span> and <span class='latex'>\(y_{i}\)</span>, and we have to
+    come
+    up with a line <span class='latex'>\(\hat{y_{i}}=ax_{i}+b\)</span> that best
+    fits these points.<span class='content' style="color:rgb(6, 187, 6)"> Every solution
+      has one objective at its core,
+      minimizing the error. Let's start with that.</span>
+
+    In this case, the error will be the distance between a data point <span class='latex'>\(x_{i}\)</span> and the
+    predicted line <span class='latex'>\(\hat{y}\)</span> as shown. We must
+    formulate an error function generic for all data points and then try and minimize this using calculus.</p>
+  <div class="content"><iframe width="700" height="500" frameborder="0" scrolling="no"
+      src="https://www.plotly.com/~Naresh6017/5.embed?showlink=false"></iframe></div> -->
+  <!-- <div class="content"> <img src="blog1img1.png" alt=""></div> -->
+  <!-- <div class="content">Formulating an error function and using calculus (differentiate and equate to zero) is our
+    current plan. As we discussed, that error is in terms of the distance from a data point to the line. <span
+      class='content' style="color: rgb(6, 187, 6)">Can we sum over
+      all the distances to get an error function? Unfortunately, No!</span> The reason is two-fold; if we consider
+    opposite
+    signs for points lying on either side of <span class='latex'>\(\hat{y}\)</span>, we might end up negating the
+    error
+    of two points equally spaced on
+    either side. This approach considers the error to be zero while it's not. (Let's take modulus, right? No sign
+    issue!) Actually, No! Remember that we have to differentiate error function, and modulus function is not
+    differentiable at
+    zero. What we can do is square the distance for all the points. This approach solves both the issues (distances
+    won't cancel out, and parabola is differentiable)</div> -->
+
+  <p class="latex">\(\begin{align}E = \sum_{i=1}^{N}(y_{i}-\hat{y_{i}})^2 = \sum_{i=1}^{N}(y_{i}-w^Tx_{i})^2
+    \end{align}\)</p>
+  <p class='content'>Just like we did with 1-D regression, let's continue by differentiating the error (loss) function
+    w.r.t the variables and equate to zero.</p>
+  <p class="latex">\(\begin{align}\frac{\partial E}{\partial w_{j}} = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-\frac{\partial
+    (w^Tx_{i})}{\partial w_{j}}) = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-x_{ij})
+    \end{align}\)</p>
+  <p class="latex">\(\begin{align}\frac{\partial E}{\partial w_{j}} = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-x_{ij}) = 0
+    \end{align}\)</p>
+  <p class="latex">\(\begin{align}\sum_{i=1}^{N}y_{i}(-x_{ij})-\sum_{i=1}^{N}w^Tx_{i}(-x_{ij}) = 0
+    \end{align}\)</p>
+  <p class="latex">\(\begin{align}\sum_{i=1}^{N}w^Tx_{i}x_{ij} = \sum_{i=1}^{N}y_{i}x_{ij}
+    \end{align}\)</p>
+  <p class='scenter'><span class='latex'>\(w^T\)</span> loops over <span class='latex'>\(j\)</span> and not <span
+      class='latex'>\(i\)</span>, so the equation becomes:</p>
+  <p class="latex">\(\begin{align}w^T\sum_{i=1}^{N}x_{i}x_{ij} = \sum_{i=1}^{N}y_{i}x_{ij}
+    \end{align}\)</p>
+  <p class='scenter'> <span class='highlight'>The above equation looks just one line, but represents D different
+      equations.</span></p>
+  <!-- <p class = 'scenter'></p> -->
+  <p class="latex">\(\begin{align}w^T\sum_{i=1}^{N}x_{i}x_{i1} = \sum_{i=1}^{N}y_{i}x_{i1} \\
+    w^T\sum_{i=1}^{N}x_{i}x_{i2} = \sum_{i=1}^{N}y_{i}x_{i2}
+    \end{align}\)</p>
+  <p class='scenter'>...</p>
+  <!-- <p class='scenter'>.</p> -->
+  <p class="latex">\(\begin{align}w^T\sum_{i=1}^{N}x_{i}x_{iD} = \sum_{i=1}^{N}y_{i}x_{iD}
+    \end{align}\)</p>
+  <p class='scenter'> <span class='highlight'>Things here look very familiar. Let's review the definition of dot
+      product.</span></p>
+  <p class="latex">\(\begin{align}a^T \cdot b = \sum_{i=1}^{N}a_{i}b_{i}
+    \end{align}\)</p>
+  <p class='scenter'> <span class='highlight'>Using dot product notation and taking transpose on both sides:</span></p>
+  <p class="latex">\(\begin{align}w^T(X^TX)=y^TX
+    \end{align}\)</p>
+  <p class="latex">\(\begin{align}(X^TX)w=X^Ty
+    \end{align}\)</p>
+  <p class='content'>That was a lot of calculus there. If you are wondering how to solve the above equation, let me
+    remind you that the above equation looks exactly like <span class='latex'>\(Ax=B\)</span>. Numpy already has a
+    module <span class='latex'>\(linalg\)</span> to solve such equations.</p>
+  <p class="latex">\(\begin{align}Ax=b &\rightarrow x = np.linalg.solve(A,b) \\
+
+    w = (X^TX)^{-1}X^Ty &\rightarrow w = np.linalg.solve(X^TX, X^{T}y)
+    \end{align}\)</p><br>
+  <p class='content'>Well, there it is! A solution for Multiple Regression from scratch. <span class='highlight'>You see
+      that things get very complex very quickly, and the solution isn't always reliable as matrix inversion is a
+      complicated process on its own. There can be many instances where <span class='latex'>\((X^TX)^{-1}\)</span>
+      doesn't exist.</span> Is there any other simple way to reduce the loss function? Fortunately, yes! It's Gradient
+    Descent. Gradient Descent minimizes cost function by taking small steps in the direction of its tangent. Andrew N.
+    G. has the best explanation for Gradient Descent. Let's review his slides and use Gradient Descent to achieve our
+    goal (reduce loss function).</p>
+  <br>
+  <p class="scenter"><span class='sub_head'>Gradient Descent</span></p><br>
+  <p class='scenter'> <span class='highlight'>For further explanation, we shall use some different notations. <span
+        class='latex'>\(\hat{y} \rightarrow h(\theta)\)</span> and <span class='latex'>\(w^T \rightarrow
+        \theta^T\)</span></span></p>
+  <p class='latex'>\(\begin{align}h_{\theta}(x) = \theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}...\theta_{n}x_{n}
+    \end{align}\)</p>
+  <p class='latex'>\(\begin{align}h_{\theta}(x) = \sum_{i=0}^{n}\theta_{i}x_{i} = \theta^Tx
+    \end{align}\)</p>
+  <p class='scenter'><span class='highlight'>As we know earlier, loss function (represented here as <span
+        class='latex'>\(J(\theta)\)</span>) is in terms of the sum of squared distances.</span></p>
+  <p class='latex'>\(\begin{align}J(\theta) = \frac{1}{2}\displaystyle\sum\limits_{i=1}^m (h_{\theta}(x^{(i)}) -
+    y^{(i)})^2
+    \end{align}\)</p>
+  <p class='scenter'><span class='highlight'>Updating weights by taking steps in the direction of tangent to <span
+        class='latex'>\(J(\theta)\)</span> gives:</span></p>
+
+  <p class='latex'>\(\begin{align}\theta_{j+1} := \theta_{j}-\alpha \frac{\partial }{\partial \theta_{j}} J(\theta)
+    \end{align}\)</p>
+  <p class='scenter'><span class='highlight'>Here <span class='latex'>\(\alpha\)</span> is called the 'learning rate'.
+      It is generally set to a very small value.</span></p>
+  <p class='latex'>\(\begin{align}\frac{\partial }{\partial \theta_{j}} J(\theta) &= \frac{\partial }{\partial
+    \theta_{j}}\frac{1}{2}(h_{\theta}(x)-y)^2 \\
+
+    &= 2\cdot\frac{1}{2}(h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}} (h_{\theta}(x)-y) \\
+
+    &= (h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}}(\sum_{i=0}^{n}\theta_{i}x_{i}-y) \\
+
+    &= (h_{\theta}(x)-y)x_{j} \\
+
+    \end{align}\)</p>
+  <p class='scenter'><span class='highlight'>So the final equation for updating weights becomes:</span></p>
+  <p class='latex'>\(\begin{align}\theta_{j+1} := \theta_{j}-\alpha (h_{\theta}(x)-y)x_{j}
+    \end{align}\)</p>
+  <p class='content'>By assigning random values to weights initially and taking small steps in the tangent direction, we
+    can iteratively update weights to reach the minima of the loss function. Gradient Descent is a simple alternative to
+    the previous method of taking matrix inverse. Here, the learning rate is a hyperparameter. Adjusting the learning
+    rate for a given dataset changes the results accordingly.</p>
+  <p class='scenter'><span class='highlight'>The loss function for 2-D Regression is a 3-dimensional plot. It is shown
+      below.</span></p>
+  <!-- <div class = 'content'> -->
+  <iframe width="650" height="600" frameborder="0" scrolling="no"
+    src="https://www.plotly.com/~Naresh6017/29.embed?showlink=false"></iframe>
+  <iframe width="750" height="500" frameborder="0" scrolling="no"
+    src="https://www.plotly.com/~Naresh6017/21.embed?showlink=false"></iframe>
+  <p class='scenter'> <span class='highlight' style="font-size: 16px;">Loss function representation and Using Gradient
+      Descent to converge to minima.</span></p>
+  <!-- <p class = 'scenter'><span class = 'highlight' style="font-size: 16px;">Representation of loss.</span></p> -->
+  <!-- <iframe width="600" height="600" frameborder="0" scrolling="no"
+                  src="https://www.plotly.com/~Naresh6017/29.embed?showlink=false"></iframe> -->
+
+  <!-- <div class='content' style="border-radius: 200px;"> -->
+  <p class='content'>Another visual representation of using Gradient Descent to find line of best fit is shown below. As
+    the loss continues to decrease, the line fits better and better.</p>
+  <p class='scenter'><img style="border-radius: 5px;" src=" gd_loss.gif" alt=""></p>
+  <p class='scenter' style="font-size: 16px; padding-top: 0%;padding-bottom: 0%;">Finding line of best fit using
+    Gradient Descent. <a
+      href="https://towardsdatascience.com/gradient-descent-animation-1-simple-linear-regression-e49315b24672" style="text-decoration: none; color: #2ec4b6;">credits</a>
+  </p><br>
+  <p class='content'>That ends the article. I hope this article gave you insights about Multiple Regression. Some
+    drawbacks of using straight forward calculus approach and how Gradient Descent helps solve them. The complete code
+    is available in this <a href="https://github.com/Nareshmlblog/EssentialAI-code" style="text-decoration: none; color: #2ec4b6;">repo</a>. Thank you for reading.</p>
+  <!-- <p class='scenter' style="font-size: 16px"><a href="https://www.linkedin.com/in/nareshkumar1040/"
+      style="text-decoration:none;color:#52b788">NareshKumar Devulapally</a></p> -->
+
+
+
+  <!-- <div class=" codediv">
+    <code class="faded">this is a comment</code><br>
+    <code class="ncode"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</code><br>
+    <code class="ncode"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</code><br>
+    <code
+      class="ncode">squarify.<span class = "function">plot</span>(sizes=df[<span class = "variable">"Revenue"</span>], label=df[<span class="variable">"label"</span>], alpha=<span class = "number">0.8</span>, color<span class="keyword">=</span>colors)</code><br>
+    <code
+      class="ncode">norm <span class = "keyword">=</span> matplotlib.<span class = "module">colors</span>.<span class = "function">Normalize</span>(vmin<span class = "keyword">=</span>mini, vmax<span class = "keyword">=</span>maxi)</code><br>
+    </div><br>
+  <div class="codediv">
+    <code class="faded">lets see this comment</code> -->
+
+  <!-- </div><br> -->
+  <!-- <p class="latex">\(\begin{align}\frac{\partial }{\partial \theta_{j}} J(\theta) &= \frac{\partial }{\partial
+    \theta_{j}}\frac{1}{2}(h_{\theta}(x)-y)^2 \\
+    &= 2\cdot\frac{1}{2}(h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}} (h_{\theta}(x)-y)\end{align}\)</p>
+  <p class="latex">\(\theta_{i} = J(\theta)\)</p><br>
+  <p class="scenter"></p> -->
+  <!-- <p class="scenter">In the above equation \(J(\theta)\) represents the loss function</p>
+  <p class="latex">\(\begin{align}\frac{\partial }{\partial \theta_{j}} J(\theta) &= \frac{\partial }{\partial
+    \theta_{j}}\frac{1}{2}(h_{\theta}(x)-y)^2 \\
+    &= 2\cdot\frac{1}{2}(h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}} (h_{\theta}(x)-y)\end{align}\)</p>
+  <br>
+  <table border="1" class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Movie</th>
+        <th>Revenue</th>
+        <th>Label</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>6</th>
+        <td>Episode 7 - The Force Awakens</td>
+        <td>4068223624</td>
+        <td>The Force Awakens (37.68%)</td>
+        <td>37.68</td>
+      </tr>
+      <tr>
+        <th>7</th>
+        <td>Rogue One</td>
+        <td>2450000000</td>
+        <td>Rogue One (22.69%)</td>
+        <td>22.69</td>
+      </tr>
+      <tr>
+        <th>0</th>
+        <td>Episode 1 - The Phantom Menace</td>
+        <td>924317558</td>
+        <td>The Phantom Menace (8.56%)</td>
+        <td>8.56</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td>Episode 3 - Revenge of the Sith</td>
+        <td>848754768</td>
+        <td>Revenge of the Sith (7.86%)</td>
+        <td>7.86</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td>Episode 4 - A New Hope</td>
+        <td>775398007</td>
+        <td>A New Hope (7.18%)</td>
+        <td>7.18</td>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td>Episode 2 - Attack of the Clones</td>
+        <td>649398328</td>
+        <td>Attack of the Clones (6.01%)</td>
+        <td>6.01</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td>Episode 5 - Empire Strikes Back</td>
+        <td>538375067</td>
+        <td>Empire Strikes Back (4.99%)</td>
+        <td>4.99</td>
+      </tr>
+      <tr>
+        <th>5</th>
+        <td>Episode 6 - Return of the Jedi</td>
+        <td>475106177</td>
+        <td>Return of the Jedi (4.4%)</td>
+        <td>4.40</td>
+      </tr>
+      <tr>
+        <th>8</th>
+        <td>The Clone Wars</td>
+        <td>68282844</td>
+        <td>The Clone Wars (0.63%)</td>
+        <td>0.63</td>
+      </tr>
+    </tbody>
+  </table><br><br><br>
+  <p></p>
+  <p></p> -->
+  <button id="copy_btn">
+  </button>
+  <p class="scenter" style="font-size: 16px"><a href="https://www.linkedin.com/in/nareshkumar1040/"
+      style="text-decoration:none;color:#52b788">NareshKumar Devulapally</a></p>
+        <script type="text/javascript">
+    // check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode'); 
+
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+
+const enableDarkMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add('darkmode');
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove('darkmode');
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (darkMode === 'enabled') {
+  enableDarkMode();
+}
+
+// When someone clicks the button
+darkModeToggle.addEventListener('click', () => {
+  // get their darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  
+  // if it not current enabled, enable it
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  // if it has been enabled, turn it off  
+  } else {  
+    disableDarkMode(); 
+  }
+});
+
+
+    
+  </script>
+</body>
+
+</html>

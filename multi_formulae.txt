@@ -1,0 +1,48 @@
+\hat{y} = w^TX+b
+
+\vec{y}_{N\times1} = X^{}_{N\times D}w^{}_{D\times1}
+
+E = \sum_{i=1}^{N}(y_{i}-\hat{y_{i}})^2 = \sum_{i=1}^{N}(y_{i}-w^Tx_{i})^2
+
+\frac{\partial E}{\partial w_{j}} = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-\frac{\partial (w^Tx_{i})}{\partial w_{j}}) = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-x_{ij})
+
+\frac{\partial E}{\partial w_{j}} = \sum_{i=1}^{N}2(y_{i}-w^Tx_{i})(-x_{ij}) = 0
+
+\sum_{i=1}^{N}y_{i}(-x_{ij})-\sum_{i=1}^{N}w^Tx_{i}(-x_{ij}) = 0
+
+\sum_{i=1}^{N}w^Tx_{i}x_{ij} = \sum_{i=1}^{N}y_{i}x_{ij}
+
+w^T\sum_{i=1}^{N}x_{i}x_{ij} = \sum_{i=1}^{N}y_{i}x_{ij}
+
+w^T\sum_{i=1}^{N}x_{i}x_{i1} = \sum_{i=1}^{N}y_{i}x_{i1} \\
+w^T\sum_{i=1}^{N}x_{i}x_{i2} = \sum_{i=1}^{N}y_{i}x_{i2} \\
+w^T\sum_{i=1}^{N}x_{i}x_{i3} = \sum_{i=1}^{N}y_{i}x_{i3} \\
+w^T\sum_{i=1}^{N}x_{i}x_{iD} = \sum_{i=1}^{N}y_{i}x_{iD} \\
+
+a^Tb = \sum_{i=1}^{N}a_{i}b_{i}
+
+w^T(X^TX)=y^TX
+
+(X^TX)w=X^Ty
+
+Ax=b \rightarrow x = np.linalg.solve(A,b) \\
+
+w = (X^TX)^{-1}X^Ty \rightarrow w = np.linalg.solve(X^TX, X^{T}y)
+
+Gradient Descent
+
+h_{\theta}(x) = \theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}...\theta_{n}x_{n}
+
+h_{\theta}(x) = \sum_{i=0}^{n}\theta_{i}x_{i} = \theta^Tx
+
+J(\theta) = \frac{1}{2}\displaystyle\sum\limits_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})^2
+
+\theta_{j} := \theta_{j}-\alpha \frac{\partial }{\partial \theta_{j}} J(\theta)
+
+\frac{\partial }{\partial \theta_{j}} J(\theta) = \frac{\partial }{\partial \theta_{j}}\frac{1}{2}(h_{\theta}(x)-y)^2 \\
+
+=2\cdot\frac{1}{2}(h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}} (h_{\theta}(x)-y) \\
+
+=(h_{\theta}(x)-y)\cdot\frac{\partial }{\partial \theta_{j}}(\sum_{i=0}^{n}\theta_{i}x_{i}-y) \\
+
+= (h_{\theta}(x)-y)x_{j}
