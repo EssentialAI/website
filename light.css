@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
 table {border-collapse: collapse;}
 td {padding: 6px; text-align:right;}
 th {padding:20px;}
@@ -32,10 +34,10 @@ font-size: 17px;
 font-family: 'Nunito', sans-serif;
 }
 .linkhead{
-  font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
+  font-family: 'Hind Siliguri', sans-serif;
   font-size: 30px;
   text-align: right;
-  padding-top: 10px;
+  padding-top: 12px;
 
 }
 .links{
@@ -45,11 +47,12 @@ font-family: 'Nunito', sans-serif;
 }
 .links:hover{
   text-decoration: underline;
+  color:black;
 
 }
 .links:visited{
   text-decoration: underline;
-  color: #2c0aee ;
+  color: blue ;
 }
 .navlinks{
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
